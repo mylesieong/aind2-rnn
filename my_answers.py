@@ -51,16 +51,10 @@ def window_transform_text(text, window_size, step_size):
     inputs = []
     outputs = []
     
-    text_array = np.asarray(list(text))
-
-    corpus_size = text_array.shape[0] - window_size
-
-    i = 0
-    while (i + window_size < corpus_size):
-        inputs.append(text_array[i: i + window_size])
-        outputs.append(text_array[i + window_size])
-        i = i + step_size
-
+    for i in range(0, len(text) - window_size, step_size):
+        inputs.append(text[i:i+window_size])
+        outputs.append(text[i+window_size])
+    
     return inputs,outputs
 
 # TODO build the required RNN model: 
